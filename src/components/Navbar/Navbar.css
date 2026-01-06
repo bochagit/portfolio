@@ -1,0 +1,11 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    z-index: 1000;
+}
+
+.menu-toggle:hover {
+    cursor: pointer;
+}

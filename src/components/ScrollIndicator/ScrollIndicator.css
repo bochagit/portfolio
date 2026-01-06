@@ -1,0 +1,25 @@
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.scroll-arrow {
+    background-color: #1E3A8A;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E5E7EB;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .scroll-arrow {
+        width: 60px;
+        height: 60px;
+    }
+}

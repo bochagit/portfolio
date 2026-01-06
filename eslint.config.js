@@ -1,29 +1,46 @@
 import js from '@eslint/js'
 import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import pluginReact from 'eslint-plugin-react'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
+export default [
+  js.configs.recommended,
+
+  { 
     files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true
+        }
       },
+      globals: {
+        ...globals.browser,
+        ...globals.node
+      } 
+    },
+    plugins: {
+      react: pluginReact,
+      'react-hooks': pluginReactHooks
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-unused-vars': ['warn', {
+        varsIgnorePattern: '^[A-Z_]'
+      }],
+      'no-undef': 'warn',
+      'eqeqeq': 'error',
+      'react/jsx-key': 'error',
+      'react-hooks/rules-of-hooks': 'error',
+      'semi': ['error', 'never'],
+      'quotes': ['error', 'single'],
+      'indent': ['error', 2]
     },
-  },
-])
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    }
+  }
+]
