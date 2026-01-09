@@ -1,25 +1,62 @@
 .scroll-indicator {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%)
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  opacity: 0
+}
+
+.progress-ring-background {
+  fill: #0B1220;
+  stroke: rgba(30, 58, 138, 0.3);
+  stroke-width: 4
+}
+
+.progress-ring-circle {
+  fill: none;
+  stroke: #38BDF8;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 219.91; /* 2 * PI * 35 */
+  stroke-dashoffset: 219.91;
+  transition: stroke-dashoffset 0.3s ease
+}
+
+.scroll-content {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
 
 .scroll-arrow {
-    background-color: #1E3A8A;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #E5E7EB;
-    cursor: pointer;
+  position: absolute;
+  background-color: #1E3A8A;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #E5E7EB;
+  cursor: pointer
 }
 
-@media (max-width: 768px) {
-    .scroll-arrow {
-        width: 60px;
-        height: 60px;
-    }
+.scroll-percentage {
+  position: absolute;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #E5E7EB;
+  opacity: 0;
+  transform: scale(0)
 }
