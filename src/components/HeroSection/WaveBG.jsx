@@ -50,7 +50,7 @@ const SmoothWavyCanvas = ({
     const height = canvas.height
     ctx.fillStyle = backgroundColor
     ctx.fillRect(0, 0, width, height)
-    const numPrimaryLines = 35
+    const numPrimaryLines = 100
     for (let i = 0; i < numPrimaryLines; i++) {
       const yPos = (i / numPrimaryLines) * height
       const mouseInfl = getMouseInfluence(width / 2, yPos)
@@ -87,7 +87,7 @@ const SmoothWavyCanvas = ({
       }
       ctx.stroke()
     }
-    const numSecondaryLines = 25
+    const numSecondaryLines = 150
     for (let i = 0; i < numSecondaryLines; i++) {
       const xPos = (i / numSecondaryLines) * width
       const mouseInfl = getMouseInfluence(xPos, height / 2)

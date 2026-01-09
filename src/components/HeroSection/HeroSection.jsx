@@ -1,14 +1,17 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import './HeroSection.css'
 import profileImage from '../../assets/Images/Gonzalo-Cardozo.JPEG'
-import SmoothWavyCanvas from './WaveBG'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const HeroSection = () => {
   const heroRef = useRef(null)
   const textRef = useRef(null)
   const imageRef = useRef(null)
   const boxRef = useRef(null)
+  const contentRef = useRef(null)
 
   useEffect(() => {
     const context = gsap.context(() => {
@@ -34,6 +37,21 @@ const HeroSection = () => {
         ease: 'back.out(1.7)',
         delay: .8
       })
+
+      gsap.to(contentRef.current, {
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: '+=100%',
+          scrub: .5,
+          pin: true,
+          pinSpacing: false,
+          immediateRender: false
+        },
+        x: window.innerWidth,
+        opacity: 0,
+        ease: 'none'
+      })
     }, heroRef)
 
     return () => context.revert()
@@ -41,29 +59,28 @@ const HeroSection = () => {
 
   return (
     <section className='hero-section' ref={heroRef}>
-      <div className='delicate-dots-background'>
-        <SmoothWavyCanvas />
-      </div>
-      <div className='hero-container' ref={boxRef}>
-        <div className='hero-content'>
-          <div className='hero-text' ref={textRef}>
-            <h1 className="hero-title">
-              Hi, I'm Gonzalo Cardozo
-            </h1>
-            <h2 className="hero-subtitle">
-              Full Stack Developer
-            </h2>
-            <p className='hero-description'>
-              I build end-to-end digital solutions
-            </p>
-          </div>
-          <div className="hero-image-wrapper">
-            <img
-              ref={imageRef}
-              src={profileImage}
-              alt='Gonzalo Cardozo'
-              className='hero-image'
-            />
+      <div className='hero-content-container' ref={contentRef}>
+        <div className='hero-container' ref={boxRef}>
+          <div className='hero-content'>
+            <div className='hero-text' ref={textRef}>
+              <h1 className="hero-title">
+                Hi, I'm Gonzalo Cardozo
+              </h1>
+              <h2 className="hero-subtitle">
+                Full Stack Developer
+              </h2>
+              <p className='hero-description'>
+                I build end-to-end digital solutions
+              </p>
+            </div>
+            <div className="hero-image-wrapper">
+              <img
+                ref={imageRef}
+                src={profileImage}
+                alt='Gonzalo Cardozo'
+                className='hero-image'
+              />
+            </div>
           </div>
         </div>
       </div>
