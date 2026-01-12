@@ -11,8 +11,8 @@ const LanguageSelector = ({ onLanguageSelect }) => {
     if (selectorRef.current){
       gsap.fromTo(
         selectorRef.current,
-        { opacity: 0, scale: .8 },
-        { opacity: 1, scale: 1, duration: .5, ease: 'back.out(1.7)' }
+        { opacity: 0, x: -window.innerWidth },
+        { opacity: 1, duration: .5, x: 0, ease: 'none' }
       )
     }
   }, [])
