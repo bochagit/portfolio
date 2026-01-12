@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!-- Círculo de fondo -->
+  <circle cx="128" cy="128" r="110" fill="#1E3A8A"/>
+  <!-- Borde exterior -->
+  <circle cx="128" cy="128" r="110" fill="none" stroke="#38BDF8" stroke-width="6"/>
+  <!-- Texto GC -->
+  <text x="128" y="160" font-family="Inter, sans-serif" font-size="96" font-weight="900" fill="#E5E7EB" text-anchor="middle">GC</text>
+</svg>
