@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './HeroSection.css'
 import profileImage from '../../assets/Images/Gonzalo-Cardozo.JPEG'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const HeroSection = () => {
+  const { t } = useTranslation()
   const heroRef = useRef(null)
   const textRef = useRef(null)
   const imageRef = useRef(null)
@@ -64,13 +66,13 @@ const HeroSection = () => {
           <div className='hero-content'>
             <div className='hero-text' ref={textRef}>
               <h1 className="hero-title">
-                Hi, I'm Gonzalo Cardozo
+                {t('hero.greeting')}
               </h1>
               <h2 className="hero-subtitle">
-                Full Stack Developer
+                {t('hero.title')}
               </h2>
               <p className='hero-description'>
-                I build end-to-end digital solutions
+                {t('hero.description')}
               </p>
             </div>
             <div className="hero-image-wrapper">

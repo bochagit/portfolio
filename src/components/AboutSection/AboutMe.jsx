@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './AboutMe.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const AboutMe = () => {
+  const { t } = useTranslation()
   const aboutRef = useRef(null)
   const contentRef = useRef(null)
 
@@ -47,10 +49,11 @@ const AboutMe = () => {
   return (
     <section className='about-section' ref={aboutRef}>
       <div className='about-container' ref={contentRef}>
-        <h1 className='about-title'>About Me</h1>
-        <p className='about-text'>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure laudantium eos inventore vero pariatur voluptas vitae, obcaecati excepturi aut sapiente molestiae voluptatibus qui! Aut eligendi impedit maiores dolores modi ab.
-        </p>
+        <h1 className='about-title'>{t('about.title')}</h1>
+        <p className='about-text'>{t('about.paragraph1')}</p>
+        <p className='about-text'>{t('about.paragraph2')}</p>
+        <p className='about-text'>{t('about.paragraph3')}</p>
+        <button className='about-button'>{t('about.button')}</button>
       </div>
     </section>
   )
