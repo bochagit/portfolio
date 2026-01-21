@@ -16,7 +16,9 @@
   },
   "stack": {
     "title": "Stack Tecnológico",
-    "technologies": "Tecnologías",
-    "tools": "Herramientas"
+    "description": "Lo que uso para crear productos digitales",
+    "coreTitle": "Tecnologías Core",
+    "databasesTitle": "Bases de datos y Sistemas",
+    "toolsTitle": "Herramientas y Flujo de trabajo"
   }
 }

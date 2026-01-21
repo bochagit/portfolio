@@ -16,7 +16,9 @@
   },
   "stack": {
     "title": "Tech Stack",
-    "technologies": "Technologies",
-    "tools": "Tools"
+    "description": "What i use tu build digital products",
+    "coreTitle": "Core Technologies",
+    "databasesTitle": "Databases & Systems",
+    "toolsTitle": "Tools & Workflow"
   }
 }

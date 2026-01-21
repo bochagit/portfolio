@@ -1,131 +1,164 @@
 .stack-section {
   min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 2rem;
   position: relative;
+  overflow: hidden;
 }
 
 .stack-container {
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  width: 80%;
+  max-width: 1000px;
+  padding: 2.5rem;
+  border: 2px solid #1E3A8A;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(2px);
+  pointer-events: none
 }
 
 .stack-title {
-  text-align: center;
   font-size: clamp(2rem, 5vw, 2.5rem);
   font-weight: 900;
-  margin-bottom: 2rem;
-  color: #E5E7EB;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.stack-iconTitle {
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: .7rem;
+}
+
+.stack-description {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  text-align: center;
+  color: #9CA3AF;
+  margin-bottom: 2.5rem;
+}
+
+.stack-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .stack-category {
+  border-left: 3px solid #38BDF8;
+  padding-left: 1.5rem;
+}
+
+.category-title {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  color: #38BDF8;
+}
+
+.tech-grid {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.stack-category-title {
-  font-size: clamp(1.5rem, 3vw, 1.8rem);
-  font-weight: 700;
-  color: #E5E7EB;
-  padding-left: 0.5rem;
-  border-left: 4px solid #1E3A8A;
-}
-
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
-}
-
-.stack-card {
-  padding: 1.5rem;
-  border: 2px solid #1E3A8A;
-  backdrop-filter: blur(2px);
-  background-color: rgba(11, 18, 32, 0.5);
-  border-radius: 0.5rem;
+.tech-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  min-height: 100px;
-}
-
-.stack-card:hover {
+  gap: 0.5rem;
+  padding: .3rem .7rem;
   background-color: rgba(30, 58, 138, 0.2);
-  border-color: #3B82F6;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: .25rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  transition: all 0.2s ease;
 }
 
-.stack-card-name {
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: 600;
-  color: #E5E7EB;
+.tech-name {
+  font-weight: 500;
 }
 
-/* Tablets */
 @media (max-width: 1024px) {
-  .stack-section {
-    padding: 3rem 1.5rem;
+  .stack-container {
+    width: 85%;
+    padding: 2rem;
   }
 
-  .stack-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1.2rem;
-  }
-
-  .stack-card {
-    padding: 1.2rem;
-    min-height: 90px;
+  .stack-categories {
+    gap: 1.5rem;
   }
 }
 
-/* Móviles */
 @media (max-width: 768px) {
   .stack-section {
-    padding: 2rem 1rem;
+    padding: 1.5rem;
   }
 
   .stack-container {
-    gap: 2rem;
+    width: 90%;
+    padding: 1.5rem;
   }
 
-  .stack-title {
-    margin-bottom: 1rem;
+  .stack-description {
+    margin-bottom: 2rem;
+  }
+
+  .stack-categories {
+    gap: 1.5rem;
   }
 
   .stack-category {
-    gap: 1rem;
+    padding-left: 1rem;
+    border-left-width: 2px;
   }
 
-  .stack-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
-  }
-
-  .stack-card {
-    padding: 1rem;
-    min-height: 80px;
-  }
-}
-
-/* Móviles pequeños */
-@media (max-width: 480px) {
-  .stack-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .tech-grid {
     gap: 0.8rem;
   }
 
-  .stack-card {
-    padding: 0.8rem;
-    min-height: 70px;
+  .tech-item {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stack-section {
+    padding: 1rem;
+  }
+
+  .stack-container {
+    width: 95%;
+    padding: 1.2rem;
+  }
+
+  .stack-categories {
+    gap: 1.2rem;
+  }
+
+  .tech-grid {
+    gap: 0.6rem;
+  }
+
+  .tech-item {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .tech-icon {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .stack-container {
+    width: 98%;
+    padding: 1rem;
+  }
+
+  .tech-item {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
   }
 }
