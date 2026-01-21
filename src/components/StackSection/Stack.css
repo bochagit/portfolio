@@ -1,0 +1,131 @@
+.stack-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.stack-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.stack-title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  color: #E5E7EB;
+}
+
+.stack-category {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stack-category-title {
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: #E5E7EB;
+  padding-left: 0.5rem;
+  border-left: 4px solid #1E3A8A;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.stack-card {
+  padding: 1.5rem;
+  border: 2px solid #1E3A8A;
+  backdrop-filter: blur(2px);
+  background-color: rgba(11, 18, 32, 0.5);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  min-height: 100px;
+}
+
+.stack-card:hover {
+  background-color: rgba(30, 58, 138, 0.2);
+  border-color: #3B82F6;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+}
+
+.stack-card-name {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: #E5E7EB;
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .stack-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .stack-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .stack-card {
+    padding: 1.2rem;
+    min-height: 90px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+  .stack-section {
+    padding: 2rem 1rem;
+  }
+
+  .stack-container {
+    gap: 2rem;
+  }
+
+  .stack-title {
+    margin-bottom: 1rem;
+  }
+
+  .stack-category {
+    gap: 1rem;
+  }
+
+  .stack-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+
+  .stack-card {
+    padding: 1rem;
+    min-height: 80px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .stack-card {
+    padding: 0.8rem;
+    min-height: 70px;
+  }
+}

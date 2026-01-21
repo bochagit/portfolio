@@ -13,5 +13,10 @@
     "paragraph2": "I help individuals and businesses turn their ideas into functional, user-friendly websites and applications, taking care of both the visual experience and the logic behind the scenes.",
     "paragraph3": "I value clean design, solid functionality, and good communication throughout the development process. My goal is to deliver solutions that not only look good, but also work smoothly and scale as your project grows.",
     "button": "Let's work together!"
+  },
+  "stack": {
+    "title": "Tech Stack",
+    "technologies": "Technologies",
+    "tools": "Tools"
   }
 }

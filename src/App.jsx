@@ -7,6 +7,7 @@ import SmoothWavyCanvas from './components/HeroSection/WaveBG'
 import AboutMe from './components/AboutSection/AboutMe'
 import LanguageSelector from './components/LanguageSelector/LanguageSelector'
 import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher'
+import Stack from './components/StackSection/Stack'
 
 function App() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false)
@@ -32,6 +33,7 @@ function App() {
         <HeroSection />
         <ScrollIndicator />
         <AboutMe />
+        <Stack />
       </div>
     </div>
   )
