@@ -92,8 +92,7 @@
 
 .infinite-line {
   width: 100vw;
-  position: absolute;
-  top: 8rem;
+  margin-bottom: 2rem;
   border-top: 1px solid #38BDF8;
   border-bottom: 1px solid #38BDF8;
   padding: 2px 0 2px 0;
