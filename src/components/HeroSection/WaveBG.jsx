@@ -6,20 +6,20 @@ const SmoothWavyCanvas = ({
   secondaryColor = '98, 126, 235',
   accentColor = '56, 155, 214',
   lineOpacity = 1,
-  animationSpeed = 0.004,
+  animationSpeed = .07,
 }) => {
   const canvasRef = useRef(null)
   const requestIdRef = useRef(null)
-  const timeRef = useRef(0)
+  const startTimeRef = useRef(performance.now())
   const mouseRef = useRef({ x: 0, y: 0, isDown: false })
   const energyFields = useRef([])
-  const getMouseInfluence = (x, y) => {
+  const getMouseInfluence = useCallback((x, y) => {
     const dx = x - mouseRef.current.x
     const dy = y - mouseRef.current.y
     const distance = Math.sqrt(dx * dx + dy * dy)
     const maxDistance = 200
     return Math.max(0, 1 - distance / maxDistance)
-  }
+  }, [])
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current
@@ -45,31 +45,35 @@ const SmoothWavyCanvas = ({
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    timeRef.current += animationSpeed
+
+    const currentTime = (performance.now() - startTimeRef.current) * animationSpeed * 0.001
+    
     const width = canvas.width
     const height = canvas.height
     ctx.fillStyle = backgroundColor
     ctx.fillRect(0, 0, width, height)
+
     const numPrimaryLines = 100
     for (let i = 0; i < numPrimaryLines; i++) {
       const yPos = (i / numPrimaryLines) * height
       const mouseInfl = getMouseInfluence(width / 2, yPos)
       const amplitude =
-        45 + 25 * Math.sin(timeRef.current * 0.25 + i * 0.15) + mouseInfl * 25
+        45 + 25 * Math.sin(currentTime * 0.25 + i * 0.15) + mouseInfl * 25
       const frequency =
         0.006 +
-        0.002 * Math.sin(timeRef.current * 0.12 + i * 0.08) +
+        0.002 * Math.sin(currentTime * 0.12 + i * 0.08) +
         mouseInfl * 0.001
       const speed =
-        timeRef.current * (0.6 + 0.3 * Math.sin(i * 0.12)) +
-        mouseInfl * timeRef.current * 0.3
+        currentTime * (0.6 + 0.3 * Math.sin(i * 0.12)) +
+        mouseInfl * currentTime * 0.3
       const thickness =
-        0.6 + 0.4 * Math.sin(timeRef.current + i * 0.25) + mouseInfl * 0.8
+        0.6 + 0.4 * Math.sin(currentTime + i * 0.25) + mouseInfl * 0.8
       const opacity =
         (0.12 +
-          0.08 * Math.abs(Math.sin(timeRef.current * 0.3 + i * 0.18)) +
+          0.08 * Math.abs(Math.sin(currentTime * 0.3 + i * 0.18)) +
           mouseInfl * 0.15) *
         lineOpacity
+      
       ctx.beginPath()
       ctx.lineWidth = thickness
       ctx.strokeStyle = `rgba(${primaryColor}, ${opacity})`
@@ -78,7 +82,7 @@ const SmoothWavyCanvas = ({
         const y =
           yPos +
           amplitude * Math.sin(x * frequency + speed) +
-          localMouseInfl * Math.sin(timeRef.current * 2 + x * 0.008) * 15
+          localMouseInfl * Math.sin(currentTime * 2 + x * 0.008) * 15
         if (x === 0) {
           ctx.moveTo(x, y)
         } else {
@@ -87,26 +91,28 @@ const SmoothWavyCanvas = ({
       }
       ctx.stroke()
     }
+
     const numSecondaryLines = 150
     for (let i = 0; i < numSecondaryLines; i++) {
       const xPos = (i / numSecondaryLines) * width
       const mouseInfl = getMouseInfluence(xPos, height / 2)
       const amplitude =
-        40 + 20 * Math.sin(timeRef.current * 0.18 + i * 0.14) + mouseInfl * 20
+        40 + 20 * Math.sin(currentTime * 0.18 + i * 0.14) + mouseInfl * 20
       const frequency =
         0.007 +
-        0.003 * Math.cos(timeRef.current * 0.14 + i * 0.09) +
+        0.003 * Math.cos(currentTime * 0.14 + i * 0.09) +
         mouseInfl * 0.002
       const speed =
-        timeRef.current * (0.5 + 0.25 * Math.cos(i * 0.16)) +
-        mouseInfl * timeRef.current * 0.25
+        currentTime * (0.5 + 0.25 * Math.cos(i * 0.16)) +
+        mouseInfl * currentTime * 0.25
       const thickness =
-        0.5 + 0.3 * Math.sin(timeRef.current + i * 0.35) + mouseInfl * 0.7
+        0.5 + 0.3 * Math.sin(currentTime + i * 0.35) + mouseInfl * 0.7
       const opacity =
         (0.1 +
-          0.06 * Math.abs(Math.sin(timeRef.current * 0.28 + i * 0.2)) +
+          0.06 * Math.abs(Math.sin(currentTime * 0.28 + i * 0.2)) +
           mouseInfl * 0.12) *
         lineOpacity
+      
       ctx.beginPath()
       ctx.lineWidth = thickness
       ctx.strokeStyle = `rgba(${secondaryColor}, ${opacity})`
@@ -115,7 +121,7 @@ const SmoothWavyCanvas = ({
         const x =
           xPos +
           amplitude * Math.sin(y * frequency + speed) +
-          localMouseInfl * Math.sin(timeRef.current * 2 + y * 0.008) * 12
+          localMouseInfl * Math.sin(currentTime * 2 + y * 0.008) * 12
         if (y === 0) {
           ctx.moveTo(x, y)
         } else {
@@ -124,15 +130,17 @@ const SmoothWavyCanvas = ({
       }
       ctx.stroke()
     }
+
     const numAccentLines = 15
     for (let i = 0; i < numAccentLines; i++) {
       const offset = (i / numAccentLines) * width * 1.5 - width * 0.25
-      const amplitude = 30 + 15 * Math.cos(timeRef.current * 0.22 + i * 0.12)
-      const phase = timeRef.current * (0.4 + 0.2 * Math.sin(i * 0.13))
-      const thickness = 0.4 + 0.25 * Math.sin(timeRef.current + i * 0.28)
+      const amplitude = 30 + 15 * Math.cos(currentTime * 0.22 + i * 0.12)
+      const phase = currentTime * (0.4 + 0.2 * Math.sin(i * 0.13))
+      const thickness = 0.4 + 0.25 * Math.sin(currentTime + i * 0.28)
       const opacity =
-        (0.06 + 0.04 * Math.abs(Math.sin(timeRef.current * 0.24 + i * 0.15))) *
+        (0.06 + 0.04 * Math.abs(Math.sin(currentTime * 0.24 + i * 0.15))) *
         lineOpacity
+      
       ctx.beginPath()
       ctx.lineWidth = thickness
       ctx.strokeStyle = `rgba(${accentColor}, ${opacity})`
@@ -145,10 +153,10 @@ const SmoothWavyCanvas = ({
         const mouseInfl = getMouseInfluence(baseX, baseY)
         const x =
           baseX +
-          mouseInfl * Math.sin(timeRef.current * 1.5 + progress * 6) * 8
+          mouseInfl * Math.sin(currentTime * 1.5 + progress * 6) * 8
         const y =
           baseY +
-          mouseInfl * Math.cos(timeRef.current * 1.5 + progress * 6) * 8
+          mouseInfl * Math.cos(currentTime * 1.5 + progress * 6) * 8
         if (j === 0) {
           ctx.moveTo(x, y)
         } else {
@@ -157,6 +165,7 @@ const SmoothWavyCanvas = ({
       }
       ctx.stroke()
     }
+
     requestIdRef.current = requestAnimationFrame(animate)
   }, [
     backgroundColor,
@@ -165,17 +174,23 @@ const SmoothWavyCanvas = ({
     accentColor,
     lineOpacity,
     animationSpeed,
+    getMouseInfluence
   ])
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
+    
+    startTimeRef.current = performance.now()
     resizeCanvas()
+    
     const handleResize = () => resizeCanvas()
     window.addEventListener('resize', handleResize)
     canvas.addEventListener('mousemove', handleMouseMove)
     canvas.addEventListener('mousedown', handleMouseDown)
     canvas.addEventListener('mouseup', handleMouseUp)
     animate()
+
     return () => {
       window.removeEventListener('resize', handleResize)
       canvas.removeEventListener('mousemove', handleMouseMove)
@@ -185,10 +200,10 @@ const SmoothWavyCanvas = ({
         cancelAnimationFrame(requestIdRef.current)
         requestIdRef.current = null
       }
-      timeRef.current = 0
       energyFields.current = []
     }
   }, [animate, resizeCanvas, handleMouseMove, handleMouseDown, handleMouseUp])
+
   return (
     <div
       style={{ 
@@ -204,4 +219,5 @@ const SmoothWavyCanvas = ({
     </div>
   )
 }
+
 export default SmoothWavyCanvas

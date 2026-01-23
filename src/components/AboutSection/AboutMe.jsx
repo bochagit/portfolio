@@ -16,7 +16,7 @@ const AboutMe = () => {
       ScrollTrigger.create({
         trigger: aboutRef.current,
         start: 'top top',
-        end: '+=100%',
+        end: '+=200%',
         pin: true,
         pinSpacing: true,
         anticipatePin: 1
@@ -32,8 +32,8 @@ const AboutMe = () => {
           scrollTrigger: {
             trigger: aboutRef.current,
             start: 'top top',
-            end: '+=100%',
-            scrub: .5,
+            end: '+=150%',
+            scrub: 1,
             immediateRender: false
           },
           x: 0,
