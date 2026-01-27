@@ -6,8 +6,8 @@ import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator'
 import SmoothWavyCanvas from './components/HeroSection/WaveBG'
 import AboutMe from './components/AboutSection/AboutMe'
 import LanguageSelector from './components/LanguageSelector/LanguageSelector'
-import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher'
 import Stack from './components/StackSection/Stack'
+import Projects from './components/ProjectsSection/Projects'
 
 function App() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false)
@@ -24,7 +24,6 @@ function App() {
       {showLanguageSelector && (
         <LanguageSelector onLanguageSelect={() => setShowLanguageSelector(false)} />
       )}
-      <LanguageSwitcher />
       <div className='delicate-dots-background'>
         <SmoothWavyCanvas />
       </div>
@@ -34,6 +33,7 @@ function App() {
         <ScrollIndicator />
         <AboutMe />
         <Stack />
+        <Projects />
       </div>
     </div>
   )

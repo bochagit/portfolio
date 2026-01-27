@@ -20,5 +20,8 @@
     "coreTitle": "Tecnologías Core",
     "databasesTitle": "Bases de datos y Sistemas",
     "toolsTitle": "Herramientas y Flujo de trabajo"
+  },
+  "projects": {
+    "title": "Proyectos destacados"
   }
 }

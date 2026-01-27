@@ -14,6 +14,15 @@ const Stack = () => {
 
   useEffect(() => {
     const context = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: stackRef.current,
+        start: 'top top',
+        end: '+=50%',
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1
+      })
+
       gsap.fromTo(
         contentRef.current,
         {
@@ -23,8 +32,8 @@ const Stack = () => {
         {
           scrollTrigger: {
             trigger: stackRef.current,
-            start: 'top 60%',
-            end: 'top: 10%',
+            start: 'top 80%',
+            end: 'top 30%',
             scrub: 1
           },
           opacity: 1,

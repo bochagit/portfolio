@@ -1,0 +1,17 @@
+.projects-section {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects-container {
+  width: 70%;
+  border: 1px dashed #0f0
+}
+
+.projects-title {
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+}

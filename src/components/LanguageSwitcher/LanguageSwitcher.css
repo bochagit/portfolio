@@ -1,14 +1,13 @@
 .language-switcher {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
   z-index: 9999;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   background-color: #0B1220;
   backdrop-filter: blur(10px);
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   border: 2px solid #1E3A8A;
 }
 
@@ -18,7 +17,7 @@
   padding: 0.25rem;
   background-color: transparent;
   border: 2px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -30,7 +29,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.25rem;
+  border-radius: 1rem;
 }
 
 .language-switcher-button:hover {
@@ -48,13 +47,6 @@
 }
 
 @media (max-width: 768px) {
-  .language-switcher {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.4rem;
-    gap: 0.4rem;
-  }
-
   .language-switcher-button {
     width: 40px;
     height: 30px;
@@ -62,13 +54,6 @@
 }
 
 @media (max-width: 480px) {
-  .language-switcher {
-    top: 0.8rem;
-    left: 0.8rem;
-    padding: 0.3rem;
-    gap: 0.3rem;
-  }
-
   .language-switcher-button {
     width: 36px;
     height: 27px;

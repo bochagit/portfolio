@@ -20,5 +20,8 @@
     "coreTitle": "Core Technologies",
     "databasesTitle": "Databases & Systems",
     "toolsTitle": "Tools & Workflow"
+  },
+  "projects": {
+    "title": "Featured projects"
   }
 }

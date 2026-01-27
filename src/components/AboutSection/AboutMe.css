@@ -14,14 +14,19 @@
   width: 70%;
   max-width: 900px;
   padding: 2rem;
-  border: 2px solid #1E3A8A;
-  backdrop-filter: blur(2px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  background: rgba(11, 18, 32, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(30, 58, 138, 0.37);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   pointer-events: none;
+  position: relative;
+  z-index: 1;
 }
 
 .about-title {
@@ -45,8 +50,8 @@
   margin-top: 1rem;
   pointer-events: auto;
   background-color: transparent;
-  border: 2px solid #1E3A8A;
-  border-radius: 0.5rem;
+  border: 1px solid #1E3A8A;
+  border-radius: 1rem;
   color: #E5E7EB;
   font-family: 'Inter', sans-serif;
   font-size: clamp(0.9rem, 2vw, 1rem);
@@ -56,8 +61,8 @@
 }
 
 .about-button:hover {
-  background-color: #1E3A8A;
-  transform: scale(1.05);
+  box-shadow: 0 0 20px #1E3A8A;
+  border-color: #38BDF8;
 }
 
 /* Tablets */
