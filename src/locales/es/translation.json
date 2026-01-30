@@ -22,6 +22,25 @@
     "toolsTitle": "Herramientas y Flujo de trabajo"
   },
   "projects": {
-    "title": "Proyectos destacados"
+    "title": "Proyectos Destacados",
+    "hoverHint": "Pasa el mouse para ver más detalles",
+    "featuresTitle": "Características principales",
+    "techStackTitle": "Stack tecnológico",
+    "viewCode": "Ver código",
+    "viewDemo": "Ver demo",
+    "ciepa": {
+      "shortDesc": "Plataforma educativa...",
+      "fullDesc": "Descripción completa...",
+      "feature1": "Feature 1",
+      "feature2": "Feature 2",
+      "feature3": "Feature 3"
+    },
+    "arken": {
+      "shortDesc": "Sistema de gestión...",
+      "fullDesc": "Descripción completa...",
+      "feature1": "Feature 1",
+      "feature2": "Feature 2",
+      "feature3": "Feature 3"
+    }
   }
 }

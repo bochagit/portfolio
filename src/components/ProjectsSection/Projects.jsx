@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger )
 const Projects = () => {
   const { t } = useTranslation()
   const projectsRef = useRef(null)
-  const cardsRef = useRef(null)
+  const cardsRef = useRef([])
 
   useEffect(() => {
     const context = gsap.context(() => {
