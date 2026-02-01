@@ -22,25 +22,28 @@
     "toolsTitle": "Tools & Workflow"
   },
   "projects": {
-    "title": "Proyectos Destacados",
-    "hoverHint": "Pasa el mouse para ver más detalles",
-    "featuresTitle": "Características principales",
-    "techStackTitle": "Stack tecnológico",
-    "viewCode": "Ver código",
-    "viewDemo": "Ver demo",
+    "title": "Featured Projects",
+    "hoverHint": "Hover your mouse over to see more details",
+    "tapHint": "Tap to see details",
+    "featuresTitle": "Main features",
+    "techStackTitle": "Tech stack",
+    "viewCode": "Code",
+    "viewDemo": "Website",
     "ciepa": {
-      "shortDesc": "Plataforma educativa...",
-      "fullDesc": "Descripción completa...",
-      "feature1": "Feature 1",
-      "feature2": "Feature 2",
-      "feature3": "Feature 3"
+      "shortDesc": "Official website of the Interdisciplinary Center for Environmental Policy Studies (CIEPA), an academic space dedicated to the research, analysis and dissemination of environmental policies",
+      "fullDesc": "I developed and maintain the website for CIEPA at the University of Buenos Aires. This platform facilitates access to information on research, projects, and activities related to environmental policy analysis from multiple disciplines. The development approach focused on ensuring a clear structure, accessibility, and intuitive navigation for diverse users, including academics, students, and the general public, enabling CIEPA to disseminate its activities, notes, and reports in a centralized manner.",
+      "feature1": "Design adapted to the visual identity of CIEPA.",
+      "feature2": "Administrator dashboard with username and password to manage publications.",
+      "feature3": "JWT-based authentication for greater security.",
+      "feature4": "File management using Cloudinary with CDN optimization."
     },
     "arken": {
-      "shortDesc": "Sistema de gestión...",
-      "fullDesc": "Descripción completa...",
-      "feature1": "Feature 1",
-      "feature2": "Feature 2",
-      "feature3": "Feature 3"
+      "shortDesc": "Website for Arken Games, an Argentinian board game publisher focused on memorable experiences that connect families and friends.",
+      "fullDesc": "This project involved developing the website for Arken Games, an Argentinian board game publisher that aims to communicate its catalog, philosophy, and contact methods for customers and retailers. The development included a clear structure to display company information, facilitate access to contact forms, and integrate engaging visual content to highlight its products and entertainment offerings.",
+      "feature1": "Development from scratch using only basic technologies for better optimization.",
+      "feature2": "Responsive layout using Flexbox and Grid, without frameworks.",
+      "feature3": "Using semantic HTML to improve accessibility, SEO, and structure.",
+      "feature4": "Contact form connected directly to the administrator's email."
     }
   }
 }

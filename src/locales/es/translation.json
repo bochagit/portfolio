@@ -24,23 +24,26 @@
   "projects": {
     "title": "Proyectos Destacados",
     "hoverHint": "Pasa el mouse para ver más detalles",
+    "tapHint": "Toca para ver los detalles",
     "featuresTitle": "Características principales",
     "techStackTitle": "Stack tecnológico",
     "viewCode": "Ver código",
-    "viewDemo": "Ver demo",
+    "viewDemo": "Ver sitio web",
     "ciepa": {
-      "shortDesc": "Plataforma educativa...",
-      "fullDesc": "Descripción completa...",
-      "feature1": "Feature 1",
-      "feature2": "Feature 2",
-      "feature3": "Feature 3"
+      "shortDesc": "Sitio oficial del Centro Interdisciplinario de Estudios en Políticas Ambientales (CIEPA), un espacio académico dedicado a la investigación, análisis y divulgación de políticas ambientales.",
+      "fullDesc": "Desarrollé y mantengo el sitio web del CIEPA, de la Universidad de Buenos Aires. Una plataforma que facilita el acceso a información sobre investigación, proyectos y actividades relacionadas con análisis de políticas ambientales desde múltiples disciplinas. El enfoque del desarrollo fue garantizar una estructura clara, accesibilidad y navegación intuitiva para distintos tipos de usuarios, incluyendo académicos, estudiantes y público general, facilitandole al CIEPA, la divulgación de sus actividades, notas e informes de forma centralizada.",
+      "feature1": "Diseño adaptado a la indentidad visual del CIEPA.",
+      "feature2": "Dashboard de administrador con usuario y contraseña para gestionar publicaciones.",
+      "feature3": "Autenticación basada en JWT para mas seguridad.",
+      "feature4": "Gestión de archivos mediante Cloudinary con optimización CDN."
     },
     "arken": {
-      "shortDesc": "Sistema de gestión...",
-      "fullDesc": "Descripción completa...",
-      "feature1": "Feature 1",
-      "feature2": "Feature 2",
-      "feature3": "Feature 3"
+      "shortDesc": "Sitio web para Arken Games, una editorial argentina de juegos de mesa enfocada en experiencias memorables que conectan a familias y amigos.",
+      "fullDesc": "Este proyecto consistió en el desarrollo del sitio web de Arken Games, una editorial argentina de juegos de mesa que busca comunicar su catálogo, filosofía y formas de contacto con clientes y puntos de venta. El desarrollo incluyó una estructura clara para mostrar información de la empresa, facilitar el acceso a formularios de contacto e integrar contenido visual atractivo para destacar sus productos y propuestas de entretenimiento.",
+      "feature1": "Desarrollo desde cero utilizando únicamente tecnologías base para mejor optimización.",
+      "feature2": "Layout responsivo usando Flexbox y Grid, sin frameworks.",
+      "feature3": "Uso de HTML semántico para mejorar accesibilidad, SEO y estructura.",
+      "feature4": "Formulario de contacto conectado directamente al correo del administrador."
     }
   }
 }
