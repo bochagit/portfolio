@@ -45,5 +45,8 @@
       "feature3": "Using semantic HTML to improve accessibility, SEO, and structure.",
       "feature4": "Contact form connected directly to the administrator's email."
     }
+  },
+  "contact": {
+    "title": "Contact Me!"
   }
 }

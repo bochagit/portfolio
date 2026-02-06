@@ -45,5 +45,8 @@
       "feature3": "Uso de HTML semántico para mejorar accesibilidad, SEO y estructura.",
       "feature4": "Formulario de contacto conectado directamente al correo del administrador."
     }
+  },
+  "contact": {
+    "title": "Contactame!"
   }
 }

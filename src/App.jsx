@@ -8,6 +8,7 @@ import AboutMe from './components/AboutSection/AboutMe'
 import LanguageSelector from './components/LanguageSelector/LanguageSelector'
 import Stack from './components/StackSection/Stack'
 import Projects from './components/ProjectsSection/Projects'
+import Contact from './components/ContactSection/Contact'
 
 function App() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false)
@@ -34,6 +35,7 @@ function App() {
         <AboutMe />
         <Stack />
         <Projects />
+        <Contact />
       </div>
     </div>
   )
