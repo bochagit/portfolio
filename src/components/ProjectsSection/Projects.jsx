@@ -4,67 +4,78 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './Projects.css'
 
-gsap.registerPlugin(ScrollTrigger )
+gsap.registerPlugin(ScrollTrigger)
 
 const Projects = () => {
   const { t } = useTranslation()
   const projectsRef = useRef(null)
   const cardsRef = useRef([])
   const [flippedCards, setFlippedCards] = useState({})
-
+  
   useEffect(() => {
     const context = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: projectsRef.current,
-        start: 'top top',
-        end: '+=300%',
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1
+      const mainTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: projectsRef.current,
+          start: 'top top',
+          end: '+=400%',
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1
+        }
       })
 
       cardsRef.current.forEach((card, index) => {
-        if (index === 0){
+        if (index === 0) {
           gsap.set(card, { opacity: 1, scale: 1, zIndex: 2 })
         } else {
-          gsap.set(card, { opacity: 0, scale: .8, zIndex: 1 })
+          gsap.set(card, { opacity: 0, scale: 0.8, zIndex: 1 })
         }
 
-        gsap.to(card, {
-          scrollTrigger: {
-            trigger: projectsRef.current,
-            start: `top+=${index * 150}% top`,
-            end: `top+=${(index + 1) * 150}% top`,
-            scrub: 1
+        mainTimeline.to(
+          card,
+          {
+            opacity: index === cardsRef.current.length - 1 ? 1 : 0,
+            scale: index === cardsRef.current.length - 1 ? 1 : 0.8,
+            ease: 'power2.inOut',
+            duration: 2
           },
-          opacity: index === cardsRef.current.length - 1 ? 1 : 0,
-          scale: index === cardsRef.current.length - 1 ? 1 : .8,
-          ease: 'power2.inOut'
-        })
+          index * 1.5
+        )
 
-        if (index < cardsRef.current.length - 1){
-          gsap.fromTo(
+        if (index < cardsRef.current.length - 1) {
+          mainTimeline.fromTo(
             cardsRef.current[index + 1],
-            { opacity: 0, scale: .8 },
+            { opacity: 0, scale: 0.8 },
             {
-              scrollTrigger: {
-                trigger: projectsRef.current,
-                start: `top+=${index * 150}% top`,
-                end: `top+=${(index + 1) * 150}% top`,
-                scrub: 1
-              },
               opacity: 1,
               scale: 1,
               zIndex: 2,
-              ease: 'power2.inOut'
-            }
+              ease: 'power2.inOut',
+              duration: 2
+            },
+            index * 1.5
           )
         }
       })
+
+      mainTimeline.to(
+        projectsRef.current,
+        {
+          x: -window.innerWidth,
+          opacity: 0,
+          ease: 'none',
+          duration: 5
+        },
+        '+=0.5'
+      )
     }, projectsRef)
 
     return () => context.revert()
   }, [])
+  
+  // ...existing code...
 
   const handleCardClick = (projectId) => {
     setFlippedCards(prev => ({

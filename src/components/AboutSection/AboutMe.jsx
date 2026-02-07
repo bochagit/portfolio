@@ -16,7 +16,7 @@ const AboutMe = () => {
       ScrollTrigger.create({
         trigger: aboutRef.current,
         start: 'top top',
-        end: '+=200%',
+        end: '+=150%',
         pin: true,
         pinSpacing: true,
         anticipatePin: 1
@@ -32,7 +32,7 @@ const AboutMe = () => {
           scrollTrigger: {
             trigger: aboutRef.current,
             start: 'top top',
-            end: '+=150%',
+            end: '+=100%',
             scrub: 1,
             immediateRender: false
           },
@@ -46,6 +46,13 @@ const AboutMe = () => {
     return () => context.revert()
   }, [])
 
+  const scrollToContact = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <section className='about-section' ref={aboutRef}>
       <div className='about-container' ref={contentRef}>
@@ -53,7 +60,7 @@ const AboutMe = () => {
         <p className='about-text'>{t('about.paragraph1')}</p>
         <p className='about-text'>{t('about.paragraph2')}</p>
         <p className='about-text'>{t('about.paragraph3')}</p>
-        <button className='about-button'>{t('about.button')}</button>
+        <button className='about-button' onClick={scrollToContact}>{t('about.button')}</button>
       </div>
     </section>
   )

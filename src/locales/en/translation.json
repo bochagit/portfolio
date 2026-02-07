@@ -47,6 +47,18 @@
     }
   },
   "contact": {
-    "title": "Contact Me!"
+    "title": "Contact Me!",
+    "formTitle": "Leave yor message",
+    "name": "Full name",
+    "namePlaceholder": "John Doe",
+    "email": "Email",
+    "emailPlaceholder": "example@mail.com",
+    "phone": "Phone number",
+    "phonePlaceholder": "+44 1234...",
+    "message": "Your message",
+    "messagePlaceholder": "Hi!...",
+    "send": "Send",
+    "socialTitle": "My social networks",
+    "socialDescription": "You can find me at..."
   }
 }

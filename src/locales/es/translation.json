@@ -47,6 +47,18 @@
     }
   },
   "contact": {
-    "title": "Contactame!"
+    "title": "¡Contactame!",
+    "formTitle": "Deja tu mensaje",
+    "name": "Nombre completo",
+    "namePlaceholder": "Gonzalo Cardozo",
+    "email": "Correo",
+    "emailPlaceholder": "ejemplo@mail.com",
+    "phone": "Phone number",
+    "phonePlaceholder": "+54 9 1234...",
+    "message": "Tu mensaje",
+    "messagePlaceholder": "Hola!...",
+    "send": "Enviar",
+    "socialTitle": "Mis redes sociales",
+    "socialDescription": "Me podes encontrar en..."
   }
 }
