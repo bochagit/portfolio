@@ -42,7 +42,7 @@ const ScrollIndicator = () => {
         end: '+=80%',
         scrub: true
       },
-      x: '45vw',
+      x: '40vw',
       scale: .8,
       ease: 'none'
     })
