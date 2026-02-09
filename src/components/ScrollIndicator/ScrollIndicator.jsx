@@ -35,6 +35,18 @@ const ScrollIndicator = () => {
 
     window.addEventListener('scroll', handleScroll)
 
+    gsap.to(circleRef.current, {
+      scrollTrigger: {
+        trigger: document.body,
+        start: '25% top',
+        end: '+=80%',
+        scrub: true
+      },
+      x: '45vw',
+      scale: .8,
+      ease: 'none'
+    })
+
     gsap.to(arrowRef.current, {
       scrollTrigger: {
         trigger: document.body,

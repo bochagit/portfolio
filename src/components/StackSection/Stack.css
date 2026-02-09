@@ -112,14 +112,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: spin 10s infinite linear;
+  animation: linear-spin 10s infinite linear;
 }
 
 .infinite-tech-item {
   margin-right: 2rem;
 }
 
-@keyframes spin {
+@keyframes linear-spin {
   0% {
     translate: 0;
   }

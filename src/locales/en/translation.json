@@ -1,11 +1,17 @@
 {
   "navbar": {
-    "menu": "Menu"
+    "menu": "Menu",
+    "home": "Home",
+    "about": "About",
+    "stack": "Stack",
+    "projects": "Projects",
+    "contact": "Contact"
   },
   "hero": {
     "greeting": "Hi, I'm Gonzalo Cardozo",
     "title": "Full Stack Developer",
-    "description": "I build end-to-end digital solutions"
+    "description": "I build end-to-end digital solutions",
+    "resume": "CLICK THE PHOTO TO DOWNLOAD MY RESUME"
   },
   "about": {
     "title": "About Me",
@@ -47,7 +53,7 @@
     }
   },
   "contact": {
-    "title": "Contact Me!",
+    "title": "Get in touch!",
     "formTitle": "Leave yor message",
     "name": "Full name",
     "namePlaceholder": "John Doe",
@@ -58,7 +64,14 @@
     "message": "Your message",
     "messagePlaceholder": "Hi!...",
     "send": "Send",
+    "sending": "Sending...",
+    "successMessage": "Message sent, i will be in touch soon.",
+    "errorMessage": "Error sending message, please check your connection and try again.",
     "socialTitle": "My social networks",
     "socialDescription": "You can find me at..."
+  },
+  "scroll": {
+    "text": "Keep scrolling!",
+    "endText": "End of page"
   }
 }

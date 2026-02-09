@@ -1,11 +1,17 @@
 {
   "navbar": {
-    "menu": "Menú"
+    "menu": "Menú",
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "stack": "Stack",
+    "projects": "Proyectos",
+    "contact": "Contacto"
   },
   "hero": {
     "greeting": "Hola, soy Gonzalo Cardozo",
     "title": "Desarrollador Full Stack",
-    "description": "Creo soluciones digitales completas, de la idea al producto final"
+    "description": "Creo soluciones digitales completas, de la idea al producto final",
+    "resume": "HACE CLICK EN LA FOTO PARA DESCARGAR MI CV"
   },
   "about": {
     "title": "Sobre Mí",
@@ -58,7 +64,14 @@
     "message": "Tu mensaje",
     "messagePlaceholder": "Hola!...",
     "send": "Enviar",
+    "sending": "Enviando...",
+    "successMessage": "Mensaje enviado, pronto me pondré en contacto.",
+    "errorMessage": "Error al enviar el mensaje, verifique su conexión e intente nuevamente.",
     "socialTitle": "Mis redes sociales",
     "socialDescription": "Me podes encontrar en..."
+  },
+    "scroll": {
+    "text": "¡Seguí scrolleando!",
+    "endText": "Fin de la pagina"
   }
 }

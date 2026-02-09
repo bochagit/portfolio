@@ -13,14 +13,14 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center
 }
 
 .hero-container {
     padding: 2rem;
     max-width: 1200px;
     width: 100%;
-    position: relative;
+    position: relative
 }
 
 .hero-content {
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 3rem;
+    gap: 3rem
 }
 
 .hero-text {
@@ -46,7 +46,7 @@
 .hero-subtitle {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem
 }
 
 .hero-description {
@@ -57,20 +57,48 @@
 
 .hero-image-wrapper {
     flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    width: 430px;
+    height: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-image {
-    width: 350px;
-    height: 350px;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #38BDF8
+    border: 2px solid #38BDF8;
+    pointer-events: all;
+    cursor: pointer
+}
+
+.circle-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none
 }
 
 @media (max-width: 1024px) {
+    .hero-image-wrapper {
+        width: 330px;
+        height: 330px;
+    }
+
     .hero-image {
         width: 250px;
         height: 250px;
+    }
+
+    .circle-text text {
+        font-size: 10px;
+        letter-spacing: 3px;
     }
 }
 
@@ -89,9 +117,19 @@
         gap: 2rem;
     }
 
+    .hero-image-wrapper {
+        width: 260px;
+        height: 260px;
+    }
+
     .hero-image {
         width: 200px;
         height: 200px;
+    }
+
+    .circle-text text {
+        font-size: 10px;
+        letter-spacing: 2px;
     }
 
     .hero-title,
@@ -109,9 +147,19 @@
         padding: 0.5rem;
     }
 
+    .hero-image-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
     .hero-image {
         width: 150px;
         height: 150px;
+    }
+
+    .circle-text text {
+        font-size: 10px;
+        letter-spacing: 1px;
     }
 
     .hero-title,

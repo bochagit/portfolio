@@ -9,6 +9,7 @@ import LanguageSelector from './components/LanguageSelector/LanguageSelector'
 import Stack from './components/StackSection/Stack'
 import Projects from './components/ProjectsSection/Projects'
 import Contact from './components/ContactSection/Contact'
+import Keep from './components/ScrollIndicator/KeepScrolling'
 
 function App() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false)
@@ -32,6 +33,7 @@ function App() {
         <Navbar />
         <HeroSection />
         <ScrollIndicator />
+        <Keep />
         <AboutMe />
         <Stack />
         <Projects />

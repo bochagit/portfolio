@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Mail, User, Phone, MessageSquare, Send } from 'lucide-react'
+import { Mail, User, Phone, MessageSquare, Send, CheckCircle, XCircle, Loader } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 import './Contact.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -11,8 +12,20 @@ const Contact = () => {
   const { t } = useTranslation()
   const contactRef = useRef(null)
   const contentRef = useRef(null)
+  const formRef = useRef(null)
+  
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
 
   useEffect(() => {
+    emailjs.init('2qVuwCllU6SXRn_BG')
+
     const context = gsap.context(() => {
       ScrollTrigger.create({
         trigger: contactRef.current,
@@ -39,13 +52,64 @@ const Contact = () => {
           },
           x: 0,
           opacity: 1,
-          ease: 'power2.out'
+          ease: 'none'
         }
       )
     }, contentRef)
 
     return () => context.revert()
   }, [])
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault()
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus('error')
+      setTimeout(() => setSubmitStatus(null), 3000)
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      await emailjs.send(
+        'service_rj1cnrd', 
+        'template_633uzvf',
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          to_email: 'gonzalocardozo.dev@gmail.com'
+        }
+      )
+
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', phone: '', message: '' })
+      
+    } catch (error) {
+      console.error('Error enviando email:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+      setTimeout(() => setSubmitStatus(null), 5000)
+    }
+  }
 
   const socialLinks = [
     {
@@ -97,7 +161,12 @@ const Contact = () => {
         <div className='contact-box'>
           <div className='contact-form-wrapper'>
             <h3 className='form-subtitle'>{t('contact.formTitle')}</h3>
-            <form className='contact-form'>
+            <form 
+              className='contact-form' 
+              ref={formRef}
+              onSubmit={handleSubmit}
+              onKeyDown={handleKeyDown}
+            >
               <div className='form-group'>
                 <label htmlFor='name' className='form-label'>
                   <User size={18} />
@@ -106,8 +175,12 @@ const Contact = () => {
                 <input
                   type='text'
                   id='name'
+                  name='name'
                   className='form-input'
                   placeholder={t('contact.namePlaceholder')}
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className='form-group'>
@@ -118,8 +191,12 @@ const Contact = () => {
                 <input
                   type='email'
                   id='email'
+                  name='email'
                   className='form-input'
                   placeholder={t('contact.emailPlaceholder')}
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className='form-group'>
@@ -130,8 +207,11 @@ const Contact = () => {
                 <input
                   type='tel'
                   id='phone'
+                  name='phone'
                   className='form-input'
                   placeholder={t('contact.phonePlaceholder')}
+                  value={formData.phone}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className='form-group'>
@@ -139,16 +219,51 @@ const Contact = () => {
                   <MessageSquare size={18} />
                   <span>{t('contact.message')}</span>
                 </label>
-                <input
+                <textarea
                   id='message'
+                  name='message'
                   className='form-textarea'
                   rows='4'
                   placeholder={t('contact.messagePlaceholder')}
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
                 />
               </div>
-              <button type='submit' className='form-button'>
-                <Send size={18} />
-                {t('contact.send')}
+
+              {submitStatus && (
+                <div className={`status-message ${submitStatus}`}>
+                  {submitStatus === 'success' && (
+                    <>
+                      <CheckCircle size={18} />
+                      <span>{t('contact.successMessage')}</span>
+                    </>
+                  )}
+                  {submitStatus === 'error' && (
+                    <>
+                      <XCircle size={18} />
+                      <span>{t('contact.errorMessage')}</span>
+                    </>
+                  )}
+                </div>
+              )}
+
+              <button 
+                type='submit' 
+                className='form-button'
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader size={18} className="spinner" />
+                    {t('contact.sending')}
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    {t('contact.send')}
+                  </>
+                )}
               </button>
             </form>
           </div>
