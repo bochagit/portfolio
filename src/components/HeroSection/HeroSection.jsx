@@ -117,7 +117,7 @@ const HeroSection = () => {
                 </defs>
                 <text fontSize="10" fontWeight="600" letterSpacing="4" fill="#38BDF8">
                   <textPath href="#circlePath">
-                    {t('hero.resume')} • • • • • • • • • • • • • • • • • • • • • • • • • •
+                    {t('hero.resume')} • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
                   </textPath>
                 </text>
               </svg>
