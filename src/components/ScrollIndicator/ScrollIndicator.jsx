@@ -12,8 +12,8 @@ const ScrollIndicator = () => {
   const percentageRef = useRef(null)
   const progressRef = useRef(null)
   const progressRingRef = useRef(null)
+  const scrollProgressRef = useRef(0)
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
 
   useEffect(() => {
     const mouseAnimation = gsap.to(arrowRef.current, {
@@ -24,90 +24,96 @@ const ScrollIndicator = () => {
       ease: 'power1.inOut'
     })
 
+    let ticking = false
+
+    const updateProgress = () => {
+      if (progressRef.current){
+        const circumference = 2 * Math.PI * 35
+        const offset = circumference - (scrollProgressRef.current / 100) * circumference
+        progressRef.current.style.strokeDashoffset = offset
+        percentageRef.current.textContent = `${Math.round(scrollProgressRef.current)}%`
+      }
+      ticking = false
+    }
+
     const handleScroll = () => {
       const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
       const progress = Math.min((scrollTop / docHeight) * 100, 100)
 
-      setScrollProgress(Math.round(progress))
-      setIsScrolling(scrollTop > 10)
+      scrollProgressRef.current = progress
+
+      if (!ticking){
+        window.requestAnimationFrame(updateProgress)
+        ticking = true
+      }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
-    gsap.to(circleRef.current, {
-      scrollTrigger: {
-        trigger: document.body,
-        start: '25% top',
-        end: '+=80%',
-        scrub: true
-      },
-      x: '40vw',
-      scale: .8,
-      ease: 'none'
-    })
+    const context = gsap.context(() => {
+      gsap.to(circleRef.current, {
+        scrollTrigger: {
+          trigger: document.body,
+          start: '25% top',
+          end: '+=80%',
+          scrub: 1
+        },
+        x: '40vw',
+        scale: .8,
+        ease: 'none'
+      })
 
-    gsap.to(arrowRef.current, {
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: '+=50',
-        scrub: true
-      },
-      scale: 0,
-      opacity: 0,
-      ease: 'power2.out'
-    })
-
-    gsap.fromTo(
-      progressRingRef.current,
-      {
-        opacity: 0
-      },
-      {
+      gsap.to(arrowRef.current, {
         scrollTrigger: {
           trigger: document.body,
           start: 'top top',
           end: '+=50',
-          scrub: true
+          scrub: 1
         },
-        opacity: 1,
-        ease: 'power2.out'
-      }
-    )
-
-    gsap.fromTo(
-      percentageRef.current,
-      {
         scale: 0,
-        opacity: 0
-      },
-      {
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: '+=50',
-          scrub: true
-        },
-        scale: 1,
-        opacity: 1,
+        opacity: 0,
         ease: 'power2.out'
-      }
-    )
+      })
+
+      gsap.fromTo(
+        progressRingRef.current,
+        { opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: document.body,
+            start: 'top top',
+            end: '+=50',
+            scrub: 1
+          },
+          opacity: 1,
+          ease: 'power2.out'
+        }
+      )
+
+      gsap.fromTo(
+        percentageRef.current,
+        { scale: 0, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: document.body,
+            start: 'top top',
+            end: '+=50',
+            scrub: 1
+          },
+          scale: 1,
+          opacity: 1,
+          ease: 'power2.out'
+        }
+      )
+    })
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       mouseAnimation.kill()
+      context.revert()
     }
   }, [])
-
-  useEffect(() => {
-    if (progressRef.current){
-      const circumference = 2 * Math.PI * 35
-      const offset = circumference - (scrollProgress / 100) * circumference
-      progressRef.current.style.strokeDashoffset = offset
-    }
-  }, [scrollProgress])
 
   return (
     <div className='scroll-indicator' ref={circleRef}>
