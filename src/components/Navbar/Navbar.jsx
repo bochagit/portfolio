@@ -13,32 +13,37 @@ const Navbar = () => {
   }
 
   const scrollToSection = (sectionClass) => {
-    let scrollPosition = 0
+    const isMobile = window.matchMedia('(max-width: 849px)').matches
 
-    switch (sectionClass) {
-    case 'hero-section':
-      scrollPosition = 0
-      break
-    case 'about-section':
-      scrollPosition = window.innerHeight * 2
-      break
-    case 'stack-section':
-      scrollPosition = window.innerHeight * 3.5
-      break
-    case 'projects-section':
-      scrollPosition = window.innerHeight * 5
-      break
-    case 'contact-section':
-      scrollPosition = document.documentElement.scrollHeight
-      break
-    default:
-      scrollPosition = 0
+    if (isMobile){
+      const section = document.querySelector(`.${sectionClass}`)
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      let scrollPosition = 0
+
+      switch (sectionClass) {
+      case 'hero-section':
+        scrollPosition = 0
+        break
+      case 'about-section':
+        scrollPosition = window.innerHeight * 2
+        break
+      case 'stack-section':
+        scrollPosition = window.innerHeight * 3.5
+        break
+      case 'projects-section':
+        scrollPosition = window.innerHeight * 5
+        break
+      case 'contact-section':
+        scrollPosition = document.documentElement.scrollHeight
+        break
+      } 
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      })
     }
-
-    window.scrollTo({
-      top: scrollPosition,
-      behavior: 'smooth'
-    })
     
     setIsMenuOpen(false)
   }
