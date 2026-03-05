@@ -13,37 +13,43 @@ const Stack = () => {
   const contentRef = useRef(null)
 
   useEffect(() => {
-    const context = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: stackRef.current,
-        start: 'top top',
-        end: '+=50%',
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1
-      })
+    const matchMedia = gsap.matchMedia()
 
-      gsap.fromTo(
-        contentRef.current,
-        {
-          opacity: 0,
-          y: 50
-        },
-        {
-          scrollTrigger: {
-            trigger: stackRef.current,
-            start: 'top 80%',
-            end: 'top 30%',
-            scrub: 1
+    matchMedia.add('(min-width: 850px)', () => {
+      const context = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: stackRef.current,
+          start: 'top top',
+          end: '+=50%',
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1
+        })
+
+        gsap.fromTo(
+          contentRef.current,
+          {
+            opacity: 0,
+            y: 50
           },
-          opacity: 1,
-          y: 0,
-          ease: 'power2.out'
-        }
-      )
-    }, stackRef)
+          {
+            scrollTrigger: {
+              trigger: stackRef.current,
+              start: 'top 80%',
+              end: 'top 30%',
+              scrub: 1
+            },
+            opacity: 1,
+            y: 0,
+            ease: 'power2.out'
+          }
+        )
+      }, stackRef)
 
-    return () => context.revert()
+      return () => context.revert()
+    })
+  
+    return () => matchMedia.revert()
   }, [])
 
   const techStack = {

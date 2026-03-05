@@ -26,35 +26,41 @@ const Contact = () => {
   useEffect(() => {
     emailjs.init('2qVuwCllU6SXRn_BG')
 
-    const context = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: contactRef.current,
-        start: 'top top',
-        end: '+=100%',
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1
-      })
+    const matchMedia = gsap.matchMedia()
 
-      gsap.fromTo(
-        contentRef.current,
-        { x: window.innerWidth, opacity: 0 },
-        {
-          scrollTrigger: {
-            trigger: contactRef.current,
-            start: 'top top',
-            end: '+=100%',
-            scrub: 1.5,
-            immediateRender: false
-          },
-          x: 0,
-          opacity: 1,
-          ease: 'none'
-        }
-      )
-    }, contentRef)
+    matchMedia.add('(min-width: 850px)', () => {
+      const context = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: contactRef.current,
+          start: 'top top',
+          end: '+=100%',
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1
+        })
 
-    return () => context.revert()
+        gsap.fromTo(
+          contentRef.current,
+          { x: window.innerWidth, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: contactRef.current,
+              start: 'top top',
+              end: '+=100%',
+              scrub: 1.5,
+              immediateRender: false
+            },
+            x: 0,
+            opacity: 1,
+            ease: 'none'
+          }
+        )
+      }, contentRef)
+
+      return () => context.revert()
+    })
+
+    return () => matchMedia.revert()
   }, [])
 
   const handleInputChange = (e) => {

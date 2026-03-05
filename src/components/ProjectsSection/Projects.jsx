@@ -66,8 +66,21 @@ const Projects = () => {
           )
         }
       })
+    }, projectsRef)
 
-      mainTimeline.to(
+    const matchMedia = gsap.matchMedia()
+
+    matchMedia.add('(min-width: 850px)', () => {
+      const exitTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: projectsRef.current,
+          start: 'top top',
+          end: '+=400%',
+          scrub: 1.5
+        }
+      })
+
+      exitTimeline.to(
         projectsRef.current,
         {
           x: -window.innerWidth,
@@ -75,11 +88,14 @@ const Projects = () => {
           ease: 'none',
           duration: 5
         },
-        '+=0.5'
+        '+=20'
       )
-    }, projectsRef)
+    })
 
-    return () => context.revert()
+    return () => {
+      context.revert()
+      matchMedia.revert()
+    }
   }, [])
 
   const projects = [
