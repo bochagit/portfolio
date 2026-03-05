@@ -12,9 +12,9 @@ import Keep from './components/ScrollIndicator/KeepScrolling'
 function App() {
   return (
     <div className='app'>
-      <div className='delicate-dots-background'>
+      {/* <div className='delicate-dots-background'>
         <SmoothWavyCanvas />
-      </div>
+      </div> */}
       <div className='content-wrapper'>
         <Navbar />
         <HeroSection />

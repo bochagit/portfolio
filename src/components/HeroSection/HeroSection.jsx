@@ -17,54 +17,60 @@ const HeroSection = () => {
   const circleTextRef = useRef(null)
 
   useEffect(() => {
-    const context = gsap.context(() => {
-      gsap.from(boxRef.current, {
-        scale: 0,
-        duration: 1,
-        ease: 'power3.out'
-      })
+    gsap.to(circleTextRef.current, {
+      rotation: 360,
+      duration: 35,
+      repeat: -1,
+      ease: 'none'
+    })
 
-      gsap.from(textRef.current.children, {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: .2,
-        ease: 'power3.out',
-        delay: .5
-      })
+    const matchMedia = gsap.matchMedia()
 
-      gsap.from(imageRef.current, {
-        scale: 0,
-        rotation: 180,
-        duration: 1,
-        ease: 'back.out(1.7)',
-        delay: .8
-      })
+    matchMedia.add('(min-width: 850px)', () => {
+      const context = gsap.context(() => {
+        gsap.from(boxRef.current, {
+          scale: 0,
+          duration: 1,
+          ease: 'power3.out'
+        })
 
-      gsap.to(circleTextRef.current, {
-        rotation: 360,
-        duration: 35,
-        repeat: -1,
-        ease: 'none'
-      })
+        gsap.from(textRef.current.children, {
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          stagger: .2,
+          ease: 'power3.out',
+          delay: .5
+        })
 
-      gsap.to(contentRef.current, {
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: '+=100%',
-          scrub: .5,
-          pin: true,
-          pinSpacing: false,
-          immediateRender: false
-        },
-        x: window.innerWidth,
-        opacity: 0,
-        ease: 'none'
-      })
-    }, heroRef)
+        gsap.from(imageRef.current, {
+          scale: 0,
+          rotation: 180,
+          duration: 1,
+          ease: 'back.out(1.7)',
+          delay: .8
+        })
 
-    return () => context.revert()
+        gsap.to(contentRef.current, {
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: '+=100%',
+            scrub: .5,
+            pin: true,
+            pinSpacing: false,
+            immediateRender: false
+          },
+          x: window.innerWidth,
+          opacity: 0,
+          ease: 'none'
+        })
+      }, heroRef)
+
+      return () => context.revert()
+    })
+
+    return () => matchMedia.revert()
   }, [])
 
   const handleDownloadCV = () => {

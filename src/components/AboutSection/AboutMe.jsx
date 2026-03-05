@@ -12,38 +12,44 @@ const AboutMe = () => {
   const contentRef = useRef(null)
 
   useEffect(() => {
-    const context = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: aboutRef.current,
-        start: 'top top',
-        end: '+=150%',
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1
-      })
+    const matchMedia = gsap.matchMedia()
 
-      gsap.fromTo(
-        contentRef.current,
-        {
-          x: -window.innerWidth,
-          opacity: 0
-        },
-        {
-          scrollTrigger: {
-            trigger: aboutRef.current,
-            start: 'top top',
-            end: '+=100%',
-            scrub: 1,
-            immediateRender: false
+    matchMedia.add('(min-width: 850px)', () => {
+      const context = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: aboutRef.current,
+          start: 'top top',
+          end: '+=150%',
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1
+        })
+
+        gsap.fromTo(
+          contentRef.current,
+          {
+            x: -window.innerWidth,
+            opacity: 0
           },
-          x: 0,
-          opacity: 1,
-          ease: 'none'
-        }
-      )
-    }, aboutRef)
+          {
+            scrollTrigger: {
+              trigger: aboutRef.current,
+              start: 'top top',
+              end: '+=100%',
+              scrub: 1,
+              immediateRender: false
+            },
+            x: 0,
+            opacity: 1,
+            ease: 'none'
+          }
+        )
+      }, aboutRef)
 
-    return () => context.revert()
+      return () => context.revert()
+    })
+
+    return () => matchMedia.revert()
   }, [])
 
   const scrollToContact = () => {

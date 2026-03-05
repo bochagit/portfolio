@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,6 +11,13 @@ const Projects = () => {
   const projectsRef = useRef(null)
   const cardsRef = useRef([])
   const [flippedCards, setFlippedCards] = useState({})
+
+  const handleCardClick = useCallback((projectId) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [projectId]: !prev[projectId]
+    }))
+  }, [])
   
   useEffect(() => {
     const context = gsap.context(() => {
@@ -19,7 +26,7 @@ const Projects = () => {
           trigger: projectsRef.current,
           start: 'top top',
           end: '+=400%',
-          scrub: 1,
+          scrub: 1.5,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1
@@ -74,15 +81,6 @@ const Projects = () => {
 
     return () => context.revert()
   }, [])
-  
-  // ...existing code...
-
-  const handleCardClick = (projectId) => {
-    setFlippedCards(prev => ({
-      ...prev,
-      [projectId]: !prev[projectId]
-    }))
-  }
 
   const projects = [
     {

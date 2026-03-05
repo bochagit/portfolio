@@ -38,16 +38,13 @@ const Contact = () => {
 
       gsap.fromTo(
         contentRef.current,
-        {
-          x: window.innerWidth,
-          opacity: 0
-        },
+        { x: window.innerWidth, opacity: 0 },
         {
           scrollTrigger: {
             trigger: contactRef.current,
             start: 'top top',
             end: '+=100%',
-            scrub: 1,
+            scrub: 1.5,
             immediateRender: false
           },
           x: 0,

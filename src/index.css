@@ -19,6 +19,7 @@
   padding: 0;
   box-sizing: border-box;
   scrollbar-width: none;
+  will-change: auto !important;
 }
 
 body {
@@ -26,8 +27,15 @@ body {
   background-color: #0B1220;
   color: #E5E7EB;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.scroll-indicator,
+.progress-ring-circle {
+  will-change: transform, opacity;
 }
